@@ -1,0 +1,12 @@
+Esta semana es un repaso integral de las consultas SQL fundamentales. Se integran conceptos clave vistos en semanas anteriores para construir consultas completas y útiles.
+
+Se enfoca en:
+
+Uso de SELECT, FROM, WHERE, ORDER BY
+Combinación de tablas con INNER JOIN
+Filtrado con operadores lógicos: IS NULL, LIKE, IN, BETWEEN
+Agrupamiento de datos con GROUP BY
+Funciones de agregación: COUNT(), SUM(), AVG(), MAX(), MIN()
+Filtrado de grupos con HAVING
+Lógica condicional dentro de consultas con CASE
+El objetivo es consolidar el conocimiento para poder resolver problemas complejos con una sola consulta.
