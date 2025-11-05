@@ -1,0 +1,11 @@
+La sesión 11 se centra en el uso de funciones agregadas y las cláusulas GROUP BY y HAVING para realizar análisis de datos en SQL Server. Estas herramientas permiten resumir grandes volúmenes de información y extraer métricas clave directamente desde la base de datos.
+
+Las funciones agregadas más comunes son:
+
+SUM(): acumula valores numéricos.
+COUNT(): cuenta filas o valores no nulos.
+AVG(): calcula el promedio.
+MAX() y MIN(): identifican los valores extremos.
+Cuando se combinan con GROUP BY, estas funciones se aplican por grupo, lo que permite comparar métricas entre categorías (por ejemplo, ventas por vendedor o salario promedio por departamento). La cláusula HAVING actúa como un filtro post-agregación, permitiendo excluir grupos que no cumplen con ciertos criterios (por ejemplo, solo departamentos con más de 5 empleados).
+
+Este enfoque es esencial en entornos de inteligencia de negocio, reportes gerenciales y análisis operativo, donde se requiere transformar datos transaccionales en información útil para la toma de decisiones.
