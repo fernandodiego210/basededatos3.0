@@ -1,0 +1,12 @@
+En esta sesión se aborda el modelado y manejo de relaciones de muchos a muchos en bases de datos relacionales. Este tipo de relación surge cuando una entidad puede vincularse con múltiples instancias de otra entidad, y viceversa. Un ejemplo clásico es la relación entre estudiantes y cursos: un estudiante puede inscribirse en varios cursos, y un curso puede tener múltiples estudiantes.
+
+SQL Server no permite crear relaciones directas muchos a muchos entre dos tablas. Para resolver esto, se introduce una tabla intermedia (o de unión) que contiene las claves foráneas de ambas entidades. Esta tabla debe tener:
+
+Una clave primaria compuesta (por ambas claves foráneas), para evitar duplicados.
+Restricciones de integridad referencial mediante FOREIGN KEY.
+El diseño correcto de esta estructura garantiza:
+
+Integridad referencial: no pueden registrarse relaciones con IDs inexistentes.
+Eficiencia en consultas: permite recuperar rápidamente qué estudiantes pertenecen a qué cursos (y viceversa) mediante JOIN.
+Flexibilidad: se pueden agregar atributos a la relación misma (por ejemplo, fecha de inscripción, calificación), si fuera necesario en el futuro.
+Esta práctica es fundamental en sistemas académicos, de ventas, gestión de roles, entre otros.
