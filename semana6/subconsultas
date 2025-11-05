@@ -1,0 +1,60 @@
+-- S06: Subconsultas
+USE CursoBD;
+GO
+
+-- 1. Subconsulta con operador de comparación: salario > promedio
+SELECT Nombre, Salario
+FROM Empleados
+WHERE Salario > (SELECT AVG(Salario) FROM Empleados);
+
+-- 2. Subconsulta con EXISTS: empleados en departamentos con proyectos
+SELECT e.Nombre
+FROM Empleados e
+WHERE EXISTS (
+    SELECT 1
+    FROM Proyectos p
+    WHERE p.ID_Departamento = e.ID_Departamento
+);
+
+-- 3. Subconsulta con NOT EXISTS: empleados en departamentos sin proyectos
+SELECT e.Nombre
+FROM Empleados e
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Proyectos p
+    WHERE p.ID_Departamento = e.ID_Departamento
+);
+
+-- 4. Subconsulta con IN: empleados en departamentos cuyo nombre incluye 'Ventas'
+SELECT Nombre
+FROM Empleados
+WHERE ID_Departamento IN (
+    SELECT ID_Departamento
+    FROM Departamentos
+    WHERE Nombre LIKE 'Ventas%'
+);
+
+-- 5. INNER JOIN: empleados con su departamento
+SELECT e.Nombre AS Empleado, d.Nombre AS Departamento
+FROM Empleados e
+INNER JOIN Departamentos d ON e.ID_Departamento = d.ID_Departamento;
+
+-- 6. LEFT JOIN: todos los empleados, incluso sin proyecto asignado
+SELECT e.Nombre AS Empleado, p.Nombre AS Proyecto
+FROM Empleados e
+LEFT JOIN Proyectos p ON e.ID_Departamento = p.ID_Departamento;
+
+-- 7. RIGHT JOIN: todos los proyectos, incluso sin empleado relacionado
+SELECT p.Nombre AS Proyecto, e.Nombre AS Empleado
+FROM Empleados e
+RIGHT JOIN Proyectos p ON e.ID_Departamento = p.ID_Departamento;
+
+-- 8. CROSS JOIN: todas las combinaciones
+SELECT e.Nombre AS Empleado, p.Nombre AS Proyecto
+FROM Empleados e
+CROSS JOIN Proyectos p;
+
+-- 9. UNION: nombres de empleados de dos departamentos (sin duplicados)
+SELECT Nombre FROM Empleados WHERE ID_Departamento = 1
+UNION
+SELECT Nombre FROM Empleados WHERE ID_Departamento = 2;
