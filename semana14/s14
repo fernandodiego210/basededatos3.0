@@ -1,0 +1,10 @@
+En esta semana aprendí a manejar transacciones en SQL Server, un concepto clave para garantizar que las operaciones críticas en la base de datos se ejecuten de forma segura y coherente. 
+Una transacción agrupa varias instrucciones SQL (como UPDATE, INSERT o DELETE) en una sola unidad lógica. O todo se aplica, o nada se aplica.
+
+El ejemplo más claro es una transferencia entre cuentas: si resto dinero de una cuenta pero falla al sumarlo a la otra, los datos quedarían inconsistentes. Para evitar eso, uso BEGIN TRANSACTION al inicio,
+COMMIT si todo sale bien (confirma los cambios), y ROLLBACK si ocurre un error (deshace todos los cambios).
+
+También practiqué con bloques TRY...CATCH para detectar errores automáticamente y decidir cuándo hacer ROLLBACK. Esto es esencial en sistemas reales donde la integridad de los datos es prioritaria,
+como en banca, ventas o gestión de inventarios.
+
+Usar transacciones correctamente me permite asegurar que mi base de datos siempre esté en un estado válido, incluso si algo falla en medio de una operación.
