@@ -1,0 +1,54 @@
+-- S07: INSERT, DELETE, UPDATE, OVER, PIVOT
+USE CursoBD;
+GO
+
+-- 1. INSERT: Agregar nuevos clientes y pedidos
+INSERT INTO Clientes (Nombre, Email) 
+VALUES ('Nueva Empresa', 'contacto@nuevaempresa.com');
+
+INSERT INTO Pedidos (ClienteID, FechaPedido, Estado)
+VALUES (5, '2025-11-06', 'Pendiente');
+
+-- 2. UPDATE: Aumentar salario a empleados del departamento de TI (ID = 3)
+UPDATE Empleados
+SET Salario = Salario * 1.1
+WHERE ID_Departamento = 3;
+
+-- 3. DELETE: Eliminar pedidos cancelados
+DELETE FROM Pedidos
+WHERE Estado = 'Cancelado';
+
+-- 4. Función de ventana con OVER(): Ventas por vendedor + total general
+SELECT 
+    Vendedor,
+    Monto,
+    SUM(Monto) OVER() AS TotalGeneralVentas,
+    SUM(Monto) OVER(PARTITION BY Vendedor) AS TotalPorVendedor
+FROM Ventas;
+
+-- 5. PIVOT: Transformar filas de meses en columnas (simulado con datos de ejemplo)
+-- Nota: SQL Server requiere PIVOT con agregación y columnas fijas.
+-- Supongamos una tabla temporal para demostrar:
+SELECT Vendedor, Mes, Monto
+INTO #VentasMensuales
+FROM (
+    VALUES 
+    ('Juan Pérez', 'Ene', 2500),
+    ('Juan Pérez', 'Feb', 3200),
+    ('Carlos Díaz', 'Ene', 1800),
+    ('Carlos Díaz', 'Feb', 2000)
+) AS T(Vendedor, Mes, Monto);
+
+-- Aplicar PIVOT
+SELECT Vendedor, [Ene], [Feb]
+FROM (
+    SELECT Vendedor, Mes, Monto
+    FROM #VentasMensuales
+) AS SourceTable
+PIVOT (
+    SUM(Monto)
+    FOR Mes IN ([Ene], [Feb])
+) AS PivotTable;
+
+-- Limpiar tabla temporal
+DROP TABLE #VentasMensuales;
