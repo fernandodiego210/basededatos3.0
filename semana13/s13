@@ -1,0 +1,10 @@
+En esta semana trabajé con programación en T-SQL, usando constructores propios de SQL Server para crear lógica más compleja directamente dentro de la base de datos. Diseñé una función escalar que 
+calcula el área de un círculo, útil para cálculos geométricos sin salir de la consulta. Luego, creé un procedimiento almacenado que inserta empleados, lo que me permite reutilizar esa lógica sin repetir código.
+
+También practiqué con variables, declarándolas y asignándoles valores dinámicos para usarlos en consultas. Usé la estructura condicional IF...ELSE 
+para tomar decisiones simples, como verificar si una persona es mayor de edad.
+
+Finalmente, programé un cursor para recorrer fila por fila la tabla de empleados e imprimir sus nombres y edades. 
+Aunque los cursores deben usarse con cuidado (por su impacto en rendimiento), son útiles cuando necesito procesar registros uno por uno, algo que no se puede hacer fácilmente con consultas estándar.
+
+Todo esto me permite automatizar tareas, mejorar la mantenibilidad del código y reducir errores al centralizar la lógica dentro de la base de datos.
