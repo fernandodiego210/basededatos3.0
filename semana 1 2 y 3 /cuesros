@@ -1,0 +1,89 @@
+-- Crear base de datos
+CREATE DATABASE CursoBD;
+GO
+USE CursoBD;
+GO
+
+-- Tablas principales
+CREATE TABLE Profesores (
+    ID_Profesor INT PRIMARY KEY IDENTITY(1,1),
+    Nombre_Profesor NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Cursos (
+    ID_Curso INT PRIMARY KEY IDENTITY(1,1),
+    Nombre_Curso NVARCHAR(100) NOT NULL,
+    ID_Profesor INT NOT NULL,
+    FOREIGN KEY (ID_Profesor) REFERENCES Profesores(ID_Profesor)
+);
+
+CREATE TABLE Estudiantes (
+    ID_Estudiante INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL
+);
+
+-- Tabla intermedia para relación muchos a muchos (S10)
+CREATE TABLE EstudiantesCursos (
+    ID_Estudiante INT,
+    ID_Curso INT,
+    PRIMARY KEY (ID_Estudiante, ID_Curso),
+    FOREIGN KEY (ID_Estudiante) REFERENCES Estudiantes(ID_Estudiante),
+    FOREIGN KEY (ID_Curso) REFERENCES Cursos(ID_Curso)
+);
+
+CREATE TABLE Departamentos (
+    ID_Departamento INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Empleados (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL,
+    Edad INT,
+    Salario DECIMAL(10,2),
+    FechaContratacion DATE,
+    ID_Departamento INT,
+    FOREIGN KEY (ID_Departamento) REFERENCES Departamentos(ID_Departamento)
+);
+
+CREATE TABLE Proyectos (
+    ID_Proyecto INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL,
+    ID_Departamento INT,
+    FOREIGN KEY (ID_Departamento) REFERENCES Departamentos(ID_Departamento)
+);
+
+CREATE TABLE Clientes (
+    ClienteID INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100)
+);
+
+CREATE TABLE Pedidos (
+    PedidoID INT PRIMARY KEY IDENTITY(1,1),
+    ClienteID INT NOT NULL,
+    FechaPedido DATE,
+    Estado NVARCHAR(50) DEFAULT 'Pendiente',
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
+);
+
+CREATE TABLE Cuentas (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    Saldo DECIMAL(12,2) NOT NULL CHECK (Saldo >= 0)
+);
+
+-- Tabla de auditoría (S15)
+CREATE TABLE AuditLog (
+    LogID INT PRIMARY KEY IDENTITY(1,1),
+    Accion NVARCHAR(50),
+    EmpleadoID INT,
+    FechaAccion DATETIME DEFAULT GETDATE()
+);
+
+-- Tabla para ventas (S11, S06, etc.)
+CREATE TABLE Ventas (
+    VentaID INT PRIMARY KEY IDENTITY(1,1),
+    Vendedor NVARCHAR(100),
+    Monto DECIMAL(10,2),
+    Fecha DATE
+);
