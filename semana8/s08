@@ -1,0 +1,34 @@
+-- S08: Procedimiento Almacenado con transacción
+USE CursoBD;
+GO
+
+-- Crear el procedimiento almacenado
+CREATE OR ALTER PROCEDURE ProcesarPedido
+    @PedidoID INT
+AS
+BEGIN
+    -- Iniciar la transacción
+    BEGIN TRANSACTION;
+    
+    BEGIN TRY
+        -- Actualizar el estado del pedido
+        UPDATE Pedidos
+        SET Estado = 'Procesado'
+        WHERE PedidoID = @PedidoID;
+
+        -- Aquí podrían incluirse más operaciones (ej. reducir stock, generar factura, etc.)
+
+        -- Confirmar la transacción
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        -- Si ocurre un error, revertir todos los cambios
+        ROLLBACK TRANSACTION;
+        -- Opcional: relanzar el error para que la aplicación lo gestione
+        THROW;
+    END CATCH
+END;
+GO
+
+-- Ejemplo de ejecución (descomenta si deseas probar)
+-- EXEC ProcesarPedido 1;
