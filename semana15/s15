@@ -1,0 +1,15 @@
+En esta semana aprendí a crear triggers en SQL Server, que son bloques de código que se ejecutan automáticamente
+cuando ocurren operaciones como INSERT, UPDATE o DELETE en una tabla. Los usé para automatizar tareas críticas, 
+como registrar cambios en una tabla de auditoría sin tener que hacerlo manualmente en cada consulta.
+
+Implementé un trigger AFTER INSERT en la tabla Empleados que, cada vez que se agrega un nuevo empleado,
+inserta un registro en la tabla AuditLog con la acción realizada, el ID del empleado y la fecha/hora del evento.
+También preparé triggers para UPDATE y DELETE, para tener un historial completo de cambios.
+
+Entendí que los triggers son muy útiles para:
+
+Auditoría: registrar quién hizo qué y cuándo.
+Integridad de datos: aplicar reglas de negocio que no se pueden expresar solo con restricciones (CHECK, FK, etc.).
+Sincronización: mantener tablas derivadas actualizadas.
+Pero también aprendí que hay que usarlos con cuidado: si no se diseñan bien, pueden afectar el rendimiento o causar 
+errores difíciles de depurar, porque su lógica se ejecuta "en segundo plano".
