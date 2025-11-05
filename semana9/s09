@@ -1,0 +1,24 @@
+-- S09: Relaciones de uno a muchos
+USE CursoBD;
+GO
+
+-- INNER JOIN: Solo clientes que tienen pedidos
+SELECT c.Nombre AS Cliente, p.FechaPedido
+FROM Clientes c
+INNER JOIN Pedidos p ON c.ClienteID = p.ClienteID;
+
+-- LEFT JOIN: Todos los clientes, incluso sin pedidos (Pedidos = NULL)
+SELECT c.Nombre AS Cliente, p.FechaPedido
+FROM Clientes c
+LEFT JOIN Pedidos p ON c.ClienteID = p.ClienteID;
+
+-- RIGHT JOIN: Todos los pedidos, incluso si no tienen cliente asociado (Cliente = NULL)
+-- (Poco común, pero útil si la tabla "Pedidos" tiene datos huérfanos)
+SELECT c.Nombre AS Cliente, p.FechaPedido
+FROM Clientes c
+RIGHT JOIN Pedidos p ON c.ClienteID = p.ClienteID;
+
+-- CROSS JOIN: Producto cartesiano (todas las combinaciones cliente-pedido)
+SELECT c.Nombre AS Cliente, p.FechaPedido
+FROM Clientes c
+CROSS JOIN Pedidos p;
