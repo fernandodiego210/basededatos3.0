@@ -1,9 +1,13 @@
-En esta semana trabajé con subconsultas usando los operadores IN y EXISTS, que me permiten hacer comparaciones más inteligentes entre tablas. Aprendí que IN es útil cuando ya conozco los valores que quiero buscar, mientras que EXISTS es más eficiente cuando solo me importa si hay coincidencias, sin importar los datos exactos.
+En esta semana trabajé con subconsultas usando los operadores IN y EXISTS, que me permiten hacer comparaciones más inteligentes entre tablas. 
+Aprendí que IN es útil cuando ya conozco los valores que quiero buscar, mientras que EXISTS es más eficiente cuando solo me importa si hay coincidencias, sin importar los datos exactos.
 
-También practiqué con funciones de fecha como DAY(), MONTH(), YEAR(), DATEADD(), DATEDIFF() y GETDATE(). Estas funciones me ayudan a manejar fechas de forma dinámica, por ejemplo, para calcular cuántos días han pasado desde una fecha específica o para filtrar registros por año o mes.
+También practiqué con funciones de fecha como DAY(), MONTH(), YEAR(), DATEADD(), DATEDIFF() y GETDATE(). Estas funciones me ayudan a manejar fechas de forma dinámica,
+por ejemplo, para calcular cuántos días han pasado desde una fecha específica o para filtrar registros por año o mes.
 
-En cuanto a cadenas, usé funciones como CONCAT() para unir nombres, LEN() para medir su longitud, SUBSTRING() para extraer partes específicas, y LOWER() / UPPER() para estandarizar texto. Además, limpié espacios innecesarios con LTRIM() y RTRIM().
+En cuanto a cadenas, usé funciones como CONCAT() para unir nombres, LEN() para medir su longitud, SUBSTRING() para extraer partes específicas, 
+y LOWER() / UPPER() para estandarizar texto. Además, limpié espacios innecesarios con LTRIM() y RTRIM().
 
-Finalmente, aprendí a convertir tipos de datos con CAST() y CONVERT(). Mientras que CAST() es más simple y estándar, CONVERT() me da más control sobre el formato, especialmente con fechas. Por ejemplo, puedo mostrar una fecha como '06/11/2025' usando el estilo 103.
+Finalmente, aprendí a convertir tipos de datos con CAST() y CONVERT(). Mientras que CAST() es más simple y estándar, CONVERT() me da más control sobre el formato, 
+especialmente con fechas. Por ejemplo, puedo mostrar una fecha como '06/11/2025' usando el estilo 103.
 
 Todo esto lo probé directamente en mi base de datos CursoBD, y me sirve mucho para análisis de datos, generación de reportes y validación de información en consultas del día a día.
